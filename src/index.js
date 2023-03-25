@@ -52,8 +52,8 @@ async function onSearchForm(evt) {
       renderGallery(images);
       lightbox.refresh();
       Notify.success(`Hooray! We found ${totalHits} images.`);
-      scrollToNextImages();
     }
+    // scrollToNextImages();
   } catch (error) {
     console.log(error);
     Notify.failure('Oops, something went wrong. Please try again later.');
@@ -66,6 +66,12 @@ async function onSearchForm(evt) {
 
 async function onLoadMore() {
   pageNumber += 1;
+  const totalPages = Math.ceil(totalHits / per_page);
+  if (pageNumber > totalPages) {
+    return Notify.info(
+      "We're sorry, but you've reached the end of search results."
+    );
+  }
   try {
     showSpinner();
     const response = await fetchImages(currentQuery, pageNumber, per_page);
@@ -74,11 +80,6 @@ async function onLoadMore() {
     renderGallery(images);
     lightbox.refresh();
     scrollToNextImages();
-
-    if (images.length === 0) {
-      Notify.info("We're sorry, but you've reached the end of search results.");
-      return;
-    }
   } catch (error) {
     console.error(error);
   } finally {
