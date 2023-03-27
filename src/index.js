@@ -44,23 +44,22 @@ async function onSearchForm(evt) {
         'Sorry, there are no images matching your search query. Please try again.'
       );
       return;
-    } else if (totalHits === 1) {
-      renderGallery(images);
-      lightbox.refresh();
-      Notify.success(`Hooray! We found ${totalHits} images.`);
-    } else {
+    }
+    // else if (totalHits === 1) {
+    //   renderGallery(images);
+    //   lightbox.refresh();
+    //   Notify.success(`Hooray! We found ${totalHits} images.`);
+    // }
+    else {
       renderGallery(images);
       lightbox.refresh();
       Notify.success(`Hooray! We found ${totalHits} images.`);
     }
-    // scrollToNextImages();
   } catch (error) {
     console.log(error);
     Notify.failure('Oops, something went wrong. Please try again later.');
   } finally {
-    () => {
-      refs.form.reset();
-    };
+    refs.form.reset();
   }
 }
 

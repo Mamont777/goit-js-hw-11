@@ -5,7 +5,7 @@ export { fetchImages };
 const API_KEY = '34641575-5b7af07926b499b252d30275f';
 const API_URL = 'https://pixabay.com/api/';
 
-async function fetchImages(currentQuery, pageNumber = 1) {
+async function fetchImages(currentQuery, pageNumber, per_page) {
   const params = {
     key: API_KEY,
     q: currentQuery,
@@ -13,7 +13,7 @@ async function fetchImages(currentQuery, pageNumber = 1) {
     orientation: 'horizontal',
     safesearch: true,
     page: pageNumber,
-    per_page: 40,
+    per_page: per_page,
   };
 
   try {
