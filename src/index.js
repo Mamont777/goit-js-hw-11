@@ -32,7 +32,7 @@ async function onSearchForm(evt) {
   refs.sentinel.style.display = 'none';
 
   refs.gallery.innerHTML = '';
-
+  showSpinner();
   if (!currentQuery) {
     return Notify.info('Please enter a search keyword!');
   }
@@ -61,11 +61,13 @@ async function onSearchForm(evt) {
     Notify.failure('Oops, something went wrong. Please try again later.');
   } finally {
     refs.form.reset();
+    hideSpinner();
   }
 }
 
 async function onLoadMore() {
   pageNumber += 1;
+
   const totalPages = Math.ceil(totalHits / per_page);
   if (pageNumber > totalPages) {
     return Notify.info(
