@@ -83,7 +83,7 @@ h1 {
 
 .photo-card img {
     width: 100%;
-    height: auto;
+    height: 300px;
     object-fit: cover;
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
@@ -96,18 +96,20 @@ h1 {
 
 .info {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     background-color: #f7f7f7;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
-    margin-top: 10px;
+    font-size: small;
+
 }
 
 .info-item {
+    display: flex;
+    flex-direction: column;
     margin: 5px;
     padding: 5px;
-    font-weight: bold;
+    font-weight: 700;
     color: #444;
     text-align: center;
 }
